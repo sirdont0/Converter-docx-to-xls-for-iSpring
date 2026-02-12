@@ -29,7 +29,6 @@ COLUMNS = [
 
 def parse_table_from_docx(file_path):
     doc = Document(file_path)
-
     questions = []
 
     for table in doc.tables:
@@ -48,9 +47,10 @@ def parse_table_from_docx(file_path):
 
             answers = [""] * 10
 
-            # ----- MC -----
+            # ======================================
+            # MULTIPLE CHOICE / MULTIPLE RESPONSE
+            # ======================================
             if variants:
-                q_type = "MC"
 
                 lines = [v.strip() for v in variants.split("\n") if v.strip()]
                 letter_map = {}
@@ -62,22 +62,30 @@ def parse_table_from_docx(file_path):
                         letter_map[letter] = idx
                         answers[idx] = text
 
-                # ставим звёздочку ПЕРЕД ответом без пробела
-                correct_letters = [c.strip() for c in correct.split(",")]
+                # разбираем правильные буквы
+                correct_letters = [
+                    c.strip() for c in correct.replace(";", ",").split(",") if c.strip()
+                ]
 
+                # определяем тип вопроса
+                if len(correct_letters) > 1:
+                    q_type = "MR"
+                else:
+                    q_type = "MC"
+
+                # ставим звёздочку перед правильными
                 for letter in correct_letters:
                     if letter in letter_map:
                         idx = letter_map[letter]
                         answers[idx] = "*" + answers[idx]
 
-            # ----- TI -----
+            # ======================================
+            # TEXT INPUT
+            # ======================================
             else:
                 q_type = "TI"
 
-                # заменяем все разделители на перенос строки
                 clean_text = correct.replace(",", "\n").replace(";", "\n")
-
-                # разбиваем и очищаем
                 ti_answers = [a.strip() for a in clean_text.split("\n") if a.strip()]
 
                 for idx, ans in enumerate(ti_answers):
