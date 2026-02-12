@@ -131,12 +131,4 @@ def select_files():
 
 
 if __name__ == "__main__":
-    input_folder = "/data"
-
-    for file in os.listdir(input_folder):
-        if file.endswith(".docx"):
-            full_path = os.path.join(input_folder, file)
-            questions = parse_table_from_docx(full_path)
-            create_excel(full_path, questions)
-
-    print("Готово.")
+    select_files()
