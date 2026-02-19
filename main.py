@@ -63,8 +63,10 @@ def parse_table_from_docx(file_path):
                         answers[idx] = text
 
                 # разбираем правильные буквы
+                # ВАЖНО: разделяем ТОЛЬКО с пробелом после символа!: ", "
+                correct_clean = correct.replace("; ", ", ")
                 correct_letters = [
-                    c.strip() for c in correct.replace(";", ",").split(",") if c.strip()
+                    c.strip() for c in correct_clean.split(", ") if c.strip()
                 ]
 
                 # определяем тип вопроса
