@@ -1,0 +1,26 @@
+{
+    "storageInfo": "[]",
+    "title": "ready_example",
+    "courseLessonTitle": "",
+    "courseDescription": "",
+    "courseAuthor": "",
+    "courseTags": "",
+    "courseGuid": "AEDAB863-3044-4D09-ABD3-F2D1A7D09030",
+    "lastPublishingPath": "",
+    "publishSettings": "",
+    "lmsPublishOptions": "{\"apiStandard\":\"AS_SCORM12\",\"reportStatuses\":\"RS_PASSED_FAILED\",\"useXAPIEndpoint\":\"T_FALSE\",\"apiStandard2\":\"AS_SCORM12\"}",
+    "onlinePublishOptions": "{\"ispringCloud\":{},\"ispringLms\":{},\"ispringStudio\":{}}",
+    "quiz": {
+        "version": "18",
+        "compatible": "2",
+        "showAllQuestions": "false",
+        "gradeInfo": {
+            "maxScore": "16",
+            "passingScore": "80",
+            "isPassingScorePercent": "true",
+            "rawMaxScore": "16",
+            "rawPassingPercent": "80",
+            "useGradeScale": "false"
+        }
+    }
+}
